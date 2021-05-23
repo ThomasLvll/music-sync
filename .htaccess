@@ -1,0 +1,7 @@
+Options -Indexes +FollowSymLinks -MultiViews
+RewriteEngine On
+RewriteBase /music-sync/
+
+
+RewriteRule ^([^/?&]*)([=@+]{1})([^/?&]*)?(.*)$ index.php?page=$1&action=$3&$4 [QSA,R=301,END]
+RewriteRule ^([^/?&]*)([=@+]{1})([^/?&]*)$ index.php?page=$1&action=$3 [QSA,R=301,END]

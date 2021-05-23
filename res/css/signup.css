@@ -1,0 +1,24 @@
+.form-container {
+    display: table;
+    margin: auto;
+    margin-top: 50px;
+    width: fit-content;
+}
+
+.form-container div {
+    display: table-row;
+    margin-bottom: 10px;
+}
+
+.form-container div span {
+    margin: auto;
+    display: table-cell;
+}
+
+form input,
+form button,
+form .button {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
