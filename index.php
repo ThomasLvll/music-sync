@@ -25,6 +25,7 @@ $user = [
     "last_name" => "Léveillé"
 ];
 $page = (isset($_GET["page"]) && mb_strlen($_GET["page"]) > 0) ? $_GET["page"] : "home";
+if (! file_exists("./res/templates/$page.php")) $page = "404";
 $action = (isset($_GET["action"]) && mb_strlen($_GET["action"]) > 0) ? $_GET["action"] : null;
 if ($action) include "./res/php/$action.php";
 

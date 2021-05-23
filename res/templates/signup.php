@@ -1,7 +1,7 @@
-<form id="signup-form" action="signup@signup"></form>
+</form>
 <div class="form-container" id="signup-form-container">
-    <table>
-        <tr>
+    <form id="signup-form" action="signup@signup">
+        <div>
             <span>
                 <label hidden for="first-name">Prénom</label>
                 <input id="first-name" name="first-name" type="text" placeholder="Prénom">
@@ -10,11 +10,15 @@
                 <label hidden for="last-name">Nom de famille</label>
                 <input id="last-name" name="last-name" type="text" placeholder="Nom de famille">
             </span>
-        </tr>
+        </div>
         <div>
-            <span style="column-span: all;">
+            <span>
                 <label hidden for="user-name">Nom d'utilisateur</label>
                 <input id="user-name" name="user-name" type="text" placeholder="Nom d'utilisateur">
+            </span>
+            <span>
+                <label hidden for="email-address">Adresse e-mail</label>
+                <input id="email-address" name="email-address" type="text" placeholder="Adresse e-mail">
             </span>
         </div>
         <div>
@@ -28,17 +32,12 @@
             </span>
         </div>
         <div>
-            <span style="column-span: all;">
-                <button type="submit" class="yes">Inscription</button>
-            </span>
+            <button type="submit" class="yes">Inscription</button>
         </div>
-        <div>
-            <span class="separator"></span>
-        </div>
-        <div>
-            <span>
-                <button onclick="open_page('login');">J'ai déjà un compte</button>
-            </span>
-        </div>
-    </table>
+    </form>
+    <div>
+        <span>
+            <a href="?page=login">J'ai déjà un compte</a>
+        </span>
+    </div>
 </div>

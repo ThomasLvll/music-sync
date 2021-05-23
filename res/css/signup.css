@@ -1,24 +1,28 @@
 .form-container {
-    display: table;
     margin: auto;
     margin-top: 50px;
     width: fit-content;
 }
 
 .form-container div {
-    display: table-row;
+    display: flex;
+    text-align: center;
     margin-bottom: 10px;
 }
 
+.form-container div * + span {
+    margin-left: 20px;
+}
+
 .form-container div span {
-    margin: auto;
-    display: table-cell;
+    flex-grow: 1;
 }
 
 form input,
 form button,
 form .button {
-    width: 100%;
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
+    min-width: 240px;
 }
