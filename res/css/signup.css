@@ -7,7 +7,7 @@
 .form-container div {
     display: flex;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .form-container div * + span {

@@ -1,5 +1,18 @@
 <?php
 
+function redirect($URL) {
+    header("Location: $URL");
+    exit();
+}
+
+function open_page($page_name) {
+    redirect("?page=$page_name");
+}
+
+function open_action($action_name) {
+    redirect("?action=$action_name");
+}
+
 function read($path) {
     return file_get_contents($path);
 }
