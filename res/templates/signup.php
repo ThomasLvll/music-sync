@@ -12,7 +12,7 @@
             </span>
         </div>
         <div>
-            <span>
+            <span style="flex-grow: 0;">
                 <label hidden for="user-name">Nom d'utilisateur</label>
                 <input id="user-name" name="user-name" type="text" placeholder="Nom d'utilisateur">
             </span>

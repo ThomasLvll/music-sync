@@ -18,6 +18,10 @@
     flex-grow: 1;
 }
 
+input#user-name {
+    min-width: 180px;
+}
+
 form input:not([type="checkbox"]),
 form button {
     padding-left: 0;
