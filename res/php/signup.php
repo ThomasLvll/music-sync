@@ -7,5 +7,8 @@ $valid = true;
 foreach ($required_values as $k)
     if (! isset($_GET[$k]) || mb_strlen($_GET[$k]) < 1)
         $valid = false;
+if ($valid) {
+    
+}
 
 ?>

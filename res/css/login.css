@@ -9,9 +9,8 @@
     margin-bottom: 20px;
 }
 
-form input,
-form button,
-form .button {
+form input:not([type="checkbox"]),
+form button {
     width: 300px;
     padding-left: 0;
     padding-right: 0;

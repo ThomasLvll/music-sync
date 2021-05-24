@@ -9,6 +9,18 @@
             <input id="password" name="password" type="password" placeholder="Mot de passe">
         </div>
         <div>
+            <input type="checkbox" name="check1" id="check1"><label for="check1">Checkbox</label>
+        </div>
+        <div>
+            <input type="checkbox" name="check2" id="check2" checked><label for="check2">Checkbox</label>
+        </div>
+        <div>
+            <input type="checkbox" name="check3" id="check3" disabled><label for="check3">Checkbox</label>
+        </div>
+        <div>
+            <input type="checkbox" name="check4" id="check4" disabled checked><label for="check4">Checkbox</label>
+        </div>
+        <div>
             <button type="submit" class="yes">Connexion</button>
         </div>
         <div>

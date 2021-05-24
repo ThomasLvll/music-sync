@@ -82,11 +82,17 @@
     
 
     --font-color: hsl(var(--grey-200));
+    --disabled-font-color: hsl(var(--grey-500));
     --background-color: hsl(var(--grey-900));
 
     --link-color: hsl(var(--tertiary-500));
     --visited-link-color: hsl(var(--quarternary-500));
     --active-link-color: hsl(var(--secondary-500));
+
+    --checkbox-on-color: hsl(var(--primary-500));
+    --checkbox-off-color: hsl(var(--secondary-500));
+    --disabled-checkbox-on-color: hsl(var(--primary-300));
+    --disabled-checkbox-off-color: hsl(var(--secondary-300));
 
     --input-border-color: currentColor;
     --input-font-color: inherit;
@@ -120,6 +126,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --font-color: hsl(var(--grey-800));
+        --disabled-font-color: hsl(var(--grey-500));
         --background-color: hsl(var(--grey-200));
 
         --link-color: hsl(var(--tertiary-700));
@@ -161,6 +168,7 @@ body {
 }
 
 button,
+input,
 .indicator,
 .separator,
 #sidebar {
@@ -235,6 +243,55 @@ input.invalid {
 
 input.invalid:focus {
     border-color: var(--invalid-input-border-color);
+}
+
+.checkbox,
+.checkbox-label {
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.checkbox.disabled,
+.checkbox-label.disabled {
+    cursor: default;
+    color: var(--disabled-font-color);
+}
+
+.checkbox {
+    display: inline-flex;
+    position: relative;
+    bottom: 2px;
+    border: 1px solid currentColor;
+    padding: 2px;
+    border-radius: 3px;
+    transition: all 200ms;
+}
+
+.checkbox > .mark {
+    display: inline-block;
+    width: .5em;
+    height: .5em;
+    border-radius: 1px;
+    background: var(--checkbox-off-color);
+    transition: all 200ms;
+}
+
+.checkbox.checked > .mark {
+    background: var(--checkbox-on-color);
+}
+
+.checkbox.disabled > .mark {
+    background: var(--disabled-checkbox-off-color);
+}
+
+.checkbox.checked.disabled > .mark {
+    background: var(--disabled-checkbox-on-color);
+}
+
+.checkbox ~ label {
+    padding-left: 10px;
 }
 
 input[type="button"],
