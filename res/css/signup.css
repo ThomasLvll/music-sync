@@ -22,7 +22,7 @@ input#user-name {
     min-width: 180px;
 }
 
-form input:not([type="checkbox"]),
+form input:not([type="checkbox"], [type="radio"]),
 form button {
     padding-left: 0;
     padding-right: 0;

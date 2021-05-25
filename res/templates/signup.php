@@ -32,6 +32,17 @@
             </span>
         </div>
         <div>
+            <span style="text-align: left;">
+                <input id="gender-male" name="gender" type="radio"><label for="gender-male">Homme</label>
+            </span>
+            <span style="text-align: left;">
+                <input id="gender-female" name="gender" type="radio"><label for="gender-female">Femme</label>
+            </span>
+            <span style="text-align: left;">
+                <input id="gender-other" name="gender" type="radio"><label for="gender-other">Autre</label>
+            </span>
+        </div>
+        <div>
             <button type="submit" class="yes">Inscription</button>
         </div>
     </form>

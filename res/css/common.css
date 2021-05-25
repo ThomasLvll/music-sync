@@ -246,7 +246,9 @@ input.invalid:focus {
 }
 
 .checkbox,
-.checkbox-label {
+.checkbox-label,
+.radio,
+.radio-label {
     cursor: pointer;
     user-select: none;
     -moz-user-select: none;
@@ -254,12 +256,15 @@ input.invalid:focus {
 }
 
 .checkbox.disabled,
-.checkbox-label.disabled {
+.checkbox-label.disabled
+.radio.disabled,
+.radio-label.disabled {
     cursor: default;
     color: var(--disabled-font-color);
 }
 
-.checkbox {
+.checkbox,
+.radio {
     display: inline-flex;
     position: relative;
     bottom: 2px;
@@ -269,7 +274,12 @@ input.invalid:focus {
     transition: all 200ms;
 }
 
-.checkbox > .mark {
+.radio {
+    border-radius: 50%;
+}
+
+.checkbox > .mark,
+.radio > .mark {
     display: inline-block;
     width: .5em;
     height: .5em;
@@ -278,19 +288,27 @@ input.invalid:focus {
     transition: all 200ms;
 }
 
-.checkbox.checked > .mark {
+.radio > .mark {
+    border-radius: 50%;
+}
+
+.checkbox.checked > .mark,
+.radio.checked > .mark {
     background: var(--checkbox-on-color);
 }
 
-.checkbox.disabled > .mark {
+.checkbox.disabled > .mark,
+.radio.disabled > .mark {
     background: var(--disabled-checkbox-off-color);
 }
 
-.checkbox.checked.disabled > .mark {
+.checkbox.checked.disabled > .mark,
+.radio.checked.disabled > .mark {
     background: var(--disabled-checkbox-on-color);
 }
 
-.checkbox ~ label {
+.checkbox ~ label,
+.radio ~ label {
     padding-left: 10px;
 }
 

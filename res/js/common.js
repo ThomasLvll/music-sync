@@ -22,14 +22,56 @@ function show_alert(msg, color = "hsl(360, 100%, 80%)") {
     e.classList.add("shown");
 }
 
+function check_radio(element) {
+    let label = document.querySelector("label[for='" + element.id + "']");
+    let span = document.querySelector(".radio#" + element.id + "-radio");
+    (element.checked) ? span.classList.add("checked") : span.classList.remove("checked");
+    (element.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
+    (element.checked) ? label.classList.add("checked") : label.classList.remove("checked");
+    (element.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
+}
+
+function check_checkbox(element) {
+    let label = document.querySelector("label[for='" + element.id + "']");
+    let span = document.querySelector(".checkbox#" + element.id + "-checkbox");
+    (element.checked) ? span.classList.add("checked") : span.classList.remove("checked");
+    (element.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
+    (element.checked) ? label.classList.add("checked") : label.classList.remove("checked");
+    (element.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
+}
+
+function toggle_radio() {
+    document.querySelectorAll("input[name='" + this.name + "']:not(#" + this.id + ")").forEach(function(e) {
+        check_radio(e);
+    });
+    check_radio(this);
+}
+
 function toggle_checkbox() {
-    let checkbox = this;
-    let label = document.querySelector("label[for='" + this.id + "']");
-    let span = document.querySelector(".checkbox#" + this.id + "-checkbox");
-    (checkbox.checked) ? span.classList.add("checked") : span.classList.remove("checked");
-    (checkbox.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
-    (checkbox.checked) ? label.classList.add("checked") : label.classList.remove("checked");
-    (checkbox.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
+    check_checkbox(this);
+}
+
+function set_radio(id) {
+    let radio = document.querySelector("#" + id);
+    radio.hidden = "hidden";
+    let label = document.querySelector("label[for='" + radio.id + "']");
+    if (label) {
+        label.classList.add("radio-label");
+        (radio.checked) ? label.classList.add("checked") : label.classList.remove("checked");
+        (radio.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
+    }
+    let span = document.createElement("span");
+    span.classList.add("radio");
+    span.id = radio.id + "-radio";
+    (radio.checked) ? span.classList.add("checked") : span.classList.remove("checked");
+    (radio.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
+    radio.parentNode.insertBefore(span, radio);
+    let mark = document.createElement("span");
+    mark.id = radio.id + "-mark";
+    mark.classList.add("mark");
+    span.appendChild(mark);
+    radio.addEventListener("change", toggle_radio);
+    span.addEventListener("click", function() { radio.click(); });
 }
 
 function set_checkbox(id) {
@@ -58,6 +100,9 @@ function set_checkbox(id) {
 
 function init() {
     // show_alert("test");
+    document.querySelectorAll("input[type='radio']").forEach(function(element) {
+        set_radio(element.id);
+    });
     document.querySelectorAll("input[type='checkbox']").forEach(function(element) {
         set_checkbox(element.id);
     });
