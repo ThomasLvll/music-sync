@@ -25,6 +25,15 @@
                 </div>
             </div>
         </div>
+        <div class="menu-item" id="youtube-music-service">
+            <div class="icon-container"><img src="./res/img/icons/services/youtube-music.png"></div>
+            <div class="extension">
+                <div>YouTube Music</div>
+                <div>
+                    <div class="indicator on"></div><span class="subtitle">2 playlists</span>
+                </div>
+            </div>
+        </div>
         <div class="menu-item" id="apple-music-service" disabled>
             <div class="icon-container"><img src="./res/img/icons/services/apple-music.png"></div>
             <div class="extension">

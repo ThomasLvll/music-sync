@@ -17,6 +17,12 @@ function read($path) {
     return file_get_contents($path);
 }
 
+function alert($msg, $color = null, $timeout = null) {
+    $_SESSION["alert"] = $msg;
+    if ($color) $_SESSION["alert_color"] = $color;
+    if ($timeout) $_SESSION["alert_timeout"] = $timeout;
+}
+
 function curl($URL, $method = "GET", $headers = [], $data = [], $options = []) {
     $curl_obj = curl_init($URL);
     curl_setopt($curl_obj, CURLOPT_RETURNTRANSFER, true);
@@ -64,13 +70,17 @@ if ($action) include "./res/php/$action.php";
         <script type="text/javascript" src="res/js/<?= $page ?>.js?v=<?= time() ?>"></script>
         <script type="text/javascript">
 <?php
-if (isset($_SESSION["error_msg"])) {
+if (isset($_SESSION["alert"])) {
 ?>
 setTimeout(function() {
-    show_alert("<?= $_SESSION["error_msg"] ?>");
+    show_alert("<?= $_SESSION["alert"] ?>", <?=
+        (isset($_SESSION["alert_color"])) ? ("'" . $_SESSION["alert_color"] . "'") : "undefined" ?>, <?=
+        (isset($_SESSION["alert_timeout"])) ? ($_SESSION["alert_timeout"]) : "undefined" ?>);
 }, 200);
 <?php
-    unset($_SESSION["error_msg"]);
+    unset($_SESSION["alert"]);
+    if (isset($_SESSION["alert_color"])) unset($_SESSION["alert_color"]);
+    if (isset($_SESSION["alert_timeout"])) unset($_SESSION["alert_timeout"]);
 }
 ?>
         </script>

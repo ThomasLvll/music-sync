@@ -81,6 +81,7 @@
     --button-font-family: var(--font-family);
     
 
+    --error-color: hsl(360, 100%, 80%);
     --font-color: hsl(var(--grey-200));
     --disabled-font-color: hsl(var(--grey-500));
     --background-color: hsl(var(--grey-900));
