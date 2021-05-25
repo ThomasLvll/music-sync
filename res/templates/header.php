@@ -55,9 +55,9 @@
     </div>
     <div class="separator"></div>
     <div id="sidebar-footer">
-        <div class="menu-item" onclick="open_page('<?= ($user["is_logged_in"]) ? "account" : "login" ?>');">
+        <div class="menu-item" onclick="open_page('<?= ($user) ? "account" : "login" ?>');">
             <div class="icon-container"><svg viewBox="0 0 50 50"><?= read("./res/img/icons/avatar.svg") ?></svg></div>
-            <div class="extension"><span><?= ($user["is_logged_in"]) ? $user["first_name"] : "Connexion" ?></span></div>
+            <div class="extension"><span><?= ($user) ? $user["first_name"] : "Connexion" ?></span></div>
         </div>
     </div>
 </div>

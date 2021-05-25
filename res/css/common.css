@@ -81,10 +81,12 @@
     --button-font-family: var(--font-family);
     
 
-    --error-color: hsl(360, 100%, 80%);
     --font-color: hsl(var(--grey-200));
     --disabled-font-color: hsl(var(--grey-500));
     --background-color: hsl(var(--grey-900));
+
+    --alert-error-color: hsl(360, 100%, 80%);
+    --alert-success-color: hsl(var(--primary-900));
 
     --link-color: hsl(var(--tertiary-500));
     --visited-link-color: hsl(var(--quarternary-500));
@@ -446,7 +448,7 @@ button.no:active {
 }
 
 #sidebar:hover {
-    width: 230px;
+    width: 240px;
 }
 
 #sidebar .icon-container {

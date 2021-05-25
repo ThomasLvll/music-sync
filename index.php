@@ -1,16 +1,25 @@
 <?php
 
-function redirect($URL) {
+function random_code($str_length = 8, $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") {
+    $chars_str_length = strlen($chars);
+    $code = "";
+    for ($i = 0; $i < $str_length; $i++) $code .= $chars[rand(0, $chars_str_length - 1)];
+    return $code;
+}
+
+function redirect($URL, $auto_exit = true) {
     header("Location: $URL");
-    exit();
+    if ($auto_exit) exit();
 }
 
-function open_page($page_name) {
-    redirect("?page=$page_name");
+function open_page($page_name, $params = null, $auto_exit = true) {
+    if ($params) $_SESSION["page_params"] = $params;
+    redirect("?page=$page_name", $auto_exit);
 }
 
-function open_action($action_name) {
-    redirect("?action=$action_name");
+function open_action($action_name, $params = null, $auto_exit = true) {
+    if ($params) $_SESSION["action_params"] = $params;
+    redirect("?action=$action_name", $auto_exit);
 }
 
 function read($path) {
@@ -38,15 +47,20 @@ function curl($URL, $method = "GET", $headers = [], $data = [], $options = []) {
 }
 
 session_start();
-$user = [
-    "is_logged_in" => false,
-    "first_name" => "Thomas",
-    "last_name" => "Léveillé"
-];
+$conn = mysqli_connect(read("./res/.secret/db_host"),
+    read("./res/.secret/db_user"),
+    read("./res/.secret/db_password"),
+    read("./res/.secret/db"),
+    read("./res/.secret/db_port"));
+$conn->query("SET CHARACTER SET utf-8");
+require "./res/php/get-user-info.php";
+
+$page_params = (isset($_SESSION["page_params"])) ? $_SESSION["page_params"] : [];
+$action_params = (isset($_SESSION["action_params"])) ? $_SESSION["action_params"] : [];
 $page = (isset($_GET["page"]) && mb_strlen($_GET["page"]) > 0) ? $_GET["page"] : "home";
 if (! file_exists("./res/templates/$page.php")) $page = "404";
 $action = (isset($_GET["action"]) && mb_strlen($_GET["action"]) > 0) ? $_GET["action"] : null;
-if ($action) include "./res/php/$action.php";
+if ($action && file_exists("./res/php/$action.php")) include "./res/php/$action.php";
 
 ?>
 <!DOCTYPE html>
@@ -86,3 +100,9 @@ setTimeout(function() {
         </script>
     </body>
 </html>
+<?php
+
+if (isset($_SESSION["page_params"])) unset($_SESSION["page_params"]);
+if (isset($_SESSION["action_params"])) unset($_SESSION["action_params"]);
+
+?>
