@@ -2,12 +2,22 @@ function redirect(URL) {
     window.location.href = URL;
 }
 
-function open_page(page_name) {
-    redirect("?page=" + page_name);
+function open_page(page_name, params = {}) {
+    let params_part = [];
+    for (const k in params) {
+        const v = params[k];
+        params_part.push(encodeURIComponent(k) + ":" + encodeURIComponent(v));
+    }
+    redirect("?page=" + page_name + "&page-params=" + params_part.join(","));
 }
 
-function open_action(action_name) {
-    redirect("?action=" + action_name);
+function open_action(action_name, params = {}) {
+    let params_part = "";
+    for (const k in params) {
+        const v = params[k];
+        params_part.push(encodeURIComponent(k) + ":" + encodeURIComponent(v));
+    }
+    redirect("?action=" + action_name + "&action-params=" + params_part.join(","));
 }
 
 let alert_timeout;

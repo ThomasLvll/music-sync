@@ -56,8 +56,28 @@ $conn->query("SET CHARACTER SET utf-8");
 require "./res/php/get-services.php";
 require "./res/php/get-user-info.php";
 
-$page_params = (isset($_SESSION["page_params"])) ? $_SESSION["page_params"] : [];
-$action_params = (isset($_SESSION["action_params"])) ? $_SESSION["action_params"] : [];
+if (isset($_SESSION["page_params"])) {
+    $page_params = $_SESSION["page_params"];
+    unset($_SESSION["page_params"]);
+} else {
+    $page_params = array();
+}
+if (isset($_GET["page-params"]) && mb_strlen($_GET["page-params"]) > 0)
+    foreach (explode(",", $_GET["page-params"]) as $param)
+        foreach (explode(":", $param) as $e)
+            $page_params[$e[0]] = $e[1];
+
+if (isset($_SESSION["action_params"])) {
+    $action_params = $_SESSION["action_params"];
+    unset($_SESSION["action_params"]);
+} else {
+    $action_params = array();
+}
+if (isset($_GET["action-params"]) && mb_strlen($_GET["action-params"]) > 0)
+    foreach (explode(",", $_GET["action-params"]) as $param)
+        foreach (explode(":", $param) as $e)
+            $action_params[$e[0]] = $e[1];
+
 $page = (isset($_GET["page"]) && mb_strlen($_GET["page"]) > 0) ? $_GET["page"] : "home";
 if (! file_exists("./res/templates/$page.php")) $page = "404";
 $action = (isset($_GET["action"]) && mb_strlen($_GET["action"]) > 0) ? $_GET["action"] : null;
@@ -101,9 +121,3 @@ setTimeout(function() {
         </script>
     </body>
 </html>
-<?php
-
-if (isset($_SESSION["page_params"])) unset($_SESSION["page_params"]);
-if (isset($_SESSION["action_params"])) unset($_SESSION["action_params"]);
-
-?>

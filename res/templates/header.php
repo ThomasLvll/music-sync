@@ -10,7 +10,9 @@
         <?php
         foreach ($services as $service) {
         ?>
-        <div class="menu-item" id="<?= $service["name"] ?>-service" disabled>
+        <div class="menu-item" id="<?= $service["name"] ?>-service" disabled onclick="open_page('service-brief', {
+            'service': '<?= $service["name"] ?>'
+        });">
             <div class="icon-container"><img src="./res/img/icons/services/<?= $service["name"] ?>"></div>
             <div class="extension">
                 <div><?= $service["nicename"] ?></div>
