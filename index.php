@@ -53,6 +53,7 @@ $conn = mysqli_connect(read("./res/.secret/db_host"),
     read("./res/.secret/db"),
     read("./res/.secret/db_port"));
 $conn->query("SET CHARACTER SET utf-8");
+require "./res/php/get-services.php";
 require "./res/php/get-user-info.php";
 
 $page_params = (isset($_SESSION["page_params"])) ? $_SESSION["page_params"] : [];

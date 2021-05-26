@@ -30,13 +30,28 @@ if ($valid) {
     if ($is_token_valid) {
         $user_id = $conn->escape_string($action_params["user_id"]);
         $user_password = $action_params["user_password"];
-        $check_sql = "SELECT `MusicSyncUsers`.`first_name`, `MusicSyncUsers`.`password_hash` FROM `MusicSyncUsers` WHERE `MusicSyncUsers`.`id` = '$user_id'";
+        $check_sql = "SELECT
+            `Users`.`first_name`,
+            `Users`.`password_hash`
+        FROM
+            `MusicSyncUsers` As `Users`
+        WHERE
+            `Users`.`id` = '$user_id'";
         $check_res = $conn->query($check_sql);
         if ($check_res) {
             $check_row = $check_res->fetch_array();
             if (password_verify($user_password, $check_row["password_hash"])) {
                 $token = $conn->escape_string($token);
-                $sql = "INSERT INTO `MusicSyncUserTokens` (`user_id`, `token`) VALUES ('$user_id', '$token')";
+                $conn->query("DELETE FROM
+                    `MusicSyncUserTokens`
+                WHERE
+                    `MusicSyncUserTokens`.`user_id` = '$user_id'");
+                
+                $sql = "INSERT INTO
+                    `MusicSyncUserTokens`
+                    (`user_id`, `token`)
+                VALUES
+                    ('$user_id', '$token')";
                 $res = $conn->query($sql);
                 if ($res) {
                     $_SESSION["user_token"] = $token;

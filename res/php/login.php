@@ -8,7 +8,13 @@ foreach ($required_values as $k)
         $valid = false;
 if ($valid) {
     $user_login = $conn->escape_string($_GET["user-name-or-email"]);
-    $sql = "SELECT * FROM `MusicSyncUsers` WHERE `MusicSyncUsers`.`user_name` = '$user_login' OR `MusicSyncUsers`.`email_address` = '$user_login'";
+    $sql = "SELECT
+        `Users`.*
+    FROM
+        `MusicSyncUsers` AS `Users`
+    WHERE
+        `Users`.`user_name` = '$user_login'
+     OR `Users`.`email_address` = '$user_login'";
     $res = $conn->query($sql);
     if ($res) {
         $count = $res->num_rows;
