@@ -447,6 +447,10 @@ button.no:active {
     transition: width 200ms;
 }
 
+#sidebar > * {
+    overflow: hidden !important;
+}
+
 #sidebar:hover {
     width: 240px;
 }

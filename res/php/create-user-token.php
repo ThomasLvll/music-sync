@@ -30,7 +30,7 @@ if ($valid) {
     if ($is_token_valid) {
         $user_id = $conn->escape_string($action_params["user_id"]);
         $user_password = $action_params["user_password"];
-        $check_sql = "SELECT `MusicSyncUsers`.`password_hash` FROM `MusicSyncUsers` WHERE `MusicSyncUsers`.`id` = '$user_id'";
+        $check_sql = "SELECT `MusicSyncUsers`.`first_name`, `MusicSyncUsers`.`password_hash` FROM `MusicSyncUsers` WHERE `MusicSyncUsers`.`id` = '$user_id'";
         $check_res = $conn->query($check_sql);
         if ($check_res) {
             $check_row = $check_res->fetch_array();
@@ -40,6 +40,7 @@ if ($valid) {
                 $res = $conn->query($sql);
                 if ($res) {
                     $_SESSION["user_token"] = $token;
+                    alert("Bienvenue, " . $check_row["first_name"] . " !", "var(--alert-success-color)");
                 } else {
                     alert("La création du jeton personnel a échoué", "var(--alert-error-color)");
                 }
