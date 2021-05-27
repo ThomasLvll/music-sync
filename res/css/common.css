@@ -416,16 +416,16 @@ button.no:active {
 .indicator {
     display: inline-block;
     position: relative;
-    bottom: 2px;
-    width: 8px;
-    height: 8px;
+    bottom: .1em;
+    width: .4em;
+    height: .4em;
     border-radius: 50%;
     color: var(--on-color);
     background: currentColor;
 }
 
 .indicator + span {
-    margin-left: 10px;
+    margin-left: .5em;
 }
 
 #sidebar {
