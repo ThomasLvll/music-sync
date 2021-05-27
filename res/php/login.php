@@ -28,7 +28,8 @@ if ($valid) {
                     if ($row["is_active"]) {
                         open_action("create-user-token", [
                             "user_id" => $row["id"],
-                            "user_password" => $_GET["password"] ]);
+                            "user_password" => $_GET["password"],
+                            "stay_logged" => $_GET["stay-logged"] ]);
                     } else {
                         open_action("confirm-email");
                     }

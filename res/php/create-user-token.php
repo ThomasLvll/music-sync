@@ -54,6 +54,8 @@ if ($valid) {
                     ('$user_id', '$token')";
                 $res = $conn->query($sql);
                 if ($res) {
+                    if (isset($action_params["stay_logged"]) && $action_params["stay_logged"])
+                        $is_cookie_set = setcookie("user_token", $token, time() + 10 * 365.25 * 24 * 60 * 60, $httponly = true);
                     $_SESSION["user_token"] = $token;
                     alert("Bienvenue, " . $check_row["first_name"] . " !", "var(--alert-success-color)");
                 } else {

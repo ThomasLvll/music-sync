@@ -1,8 +1,9 @@
 <?php
 
 $user = null;
-if (isset($_SESSION["user_token"])) {
-    $token = $_SESSION["user_token"];
+$token = (isset($_COOKIE["user_token"])) ? $_COOKIE["user_token"] : ((isset($_SESSION["user_token"])) ? $_SESSION["user_token"] : null);
+
+if ($token) {
     $sql = "SELECT
         `Users`.*
     FROM
