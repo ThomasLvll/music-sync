@@ -1,5 +1,13 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require './res/PHPMailer/src/PHPMailer.php';
+require './res/PHPMailer/src/SMTP.php';
+require './res/PHPMailer/src/Exception.php';
+
+
 function random_code($str_length = 8, $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") {
     $chars_str_length = strlen($chars);
     $code = "";
