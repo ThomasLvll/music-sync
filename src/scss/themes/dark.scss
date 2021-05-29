@@ -1,0 +1,30 @@
+$font-color: lighten($grey, 30%);
+$disabled-font-color: $grey;
+$background: darken($grey, 30%);
+
+$link-color: lighten($tertiary, 20%);
+$visited-link-color: lighten($quarternary, 20%);
+$active-link-color: lighten($secondary, 20%);
+
+$input-background: adjust-color($grey, $lightness: 40%, $alpha: -1);
+$disabled-input-background: adjust-color($input-background, $alpha: .075);
+$focus-input-border-color: lighten($tertiary, 20%);
+$input-placeholder-color: $grey;
+$invalid-input-border-color: $secondary;
+
+$focus-button-color: $tertiary;
+$active-button-background: $focus-button-color;
+$yes-focus-button-color: darken($primary, 20%);
+$yes-active-button-background: $yes-focus-button-color;
+$no-focus-button-color: darken($secondary, 10%);
+$no-active-button-background: $no-focus-button-color;
+$invalid-input-border-color: $secondary;
+
+$sidebar-font-color: darken($grey, 30%);
+$sidebar-background: adjust-color($grey, $lightness: 40%, $alpha: -.66);
+$sidebar-shadow-color: adjust-color($grey, $lightness: 20%, $alpha: -.66);
+$sidebar-header-background: adjust-color($sidebar-background, $alpha: -.23);
+$sidebar-separator-color: $sidebar-font-color;
+
+$on-color: darken($primary, 20%);
+$off-color: darken($secondary, 20%);

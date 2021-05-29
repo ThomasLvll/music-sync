@@ -28,12 +28,12 @@ function hide_alert() {
     alert_timeout = clearTimeout(alert_timeout);
 }
 
-function show_alert(msg, color = "hsl(var(--grey-800))", timeout = 0) {
+function show_alert(msg, color = "#dfdfdf", timeout = 0) {
     let e = document.querySelector("#alert");
     e.innerText = msg;
     e.style.background = color;
     e.classList.add("shown");
-    if (timeout) alert_timeout = setTimeout(hide_alert, timeout*1000);
+    if (timeout) alert_timeout = setTimeout(hide_alert, timeout * 1000);
 }
 
 function check_radio(element) {

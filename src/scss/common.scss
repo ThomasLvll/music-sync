@@ -1,0 +1,425 @@
+@font-face {
+    font-family: Alata;
+    src: url('../fonts/Alata-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('../fonts/UbuntuMono-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('../fonts/UbuntuMono-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('../fonts/UbuntuMono-Italic.ttf');
+    font-style: italic;
+}
+
+$primary: hsl(152, 93%, 50%);
+$secondary: hsl(332, 93%, 50%);
+$tertiary: hsl(212, 93%, 50%);
+$quarternary: hsl(32, 96%, 50%);
+$grey: hsl(0, 0%, 50%);
+
+$main-font-family: Alata, Arial, sans-serif;
+$mono-font-family: 'Ubuntu Mono', monospace;
+$input-font-family: $main-font-family;
+$button-font-family: $main-font-family;
+
+$sidebar-width: 64px;
+$extended-sidebar-width: 240px;
+
+@import './themes/default.scss';
+
+@media (prefers-color-scheme: dark) {
+    @import './themes/dark.scss';
+}
+
+@import './mixins.scss';
+
+:root {
+    --alert-success-color: hsl(152, 93%, 80%);
+    --alert-error-color: hsl(0, 100%, 80%);
+}
+
+body {
+    margin: 0;
+    font-family: $main-font-family;
+    color: $font-color;
+    background: $background;
+    width: 100%;
+    height: 100%;
+}
+
+pre,
+code,
+.mono {
+    @include monospace;
+}
+
+.pointer,
+.clickable {
+    @include pointer;
+}
+
+a {
+    text-decoration: none;
+    color: $link-color;
+    @include interact-transition;
+}
+
+a:visited {
+    color: $visited-link-color;
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+a:active {
+    color: $active-link-color;
+}
+
+input {
+    outline: none;
+    font-size: inherit;
+    font-family: $input-font-family;
+    color: $input-font-color;
+    background: $input-background;
+    padding-bottom: 2px;
+    border: 1px solid transparent;
+    border-bottom-color: $input-border-color;
+    @include interact-transition;
+}
+
+input::placeholder {
+    color: $input-placeholder-color;
+}
+
+input[disabled] {
+    background: $disabled-input-background;
+}
+
+input:hover {
+    border-bottom-color: $focus-input-border-color;
+}
+
+input:focus {
+    border-radius: 2px;
+    border-color: $focus-input-border-color;
+}
+
+input.invalid {
+    border-bottom-color: $invalid-input-border-color;
+}
+
+input.invalid:focus {
+    border-color: $invalid-input-border-color;
+}
+
+.checkbox,
+.checkbox-label,
+.radio,
+.radio-label {
+    @include no-user-select;
+    @include pointer;
+}
+
+.checkbox.disabled,
+.checkbox-label.disabled,
+.radio.disabled,
+.radio-label.disabled {
+    cursor: default;
+    color: $disabled-font-color;
+}
+
+.checkbox,
+.radio {
+    display: inline-flex;
+    position: relative;
+    bottom: 2px;
+    border: 1px solid currentColor;
+    padding: 2px;
+    border-radius: 3px;
+    @include interact-transition;
+
+    > .mark {
+        display: inline-block;
+        width: .5em;
+        height: .5em;
+        border-radius: 1px;
+        background: $checkbox-off-color;
+        @include interact-transition;
+    }
+
+    ~ label {
+        padding-left: 10px;
+    }
+}
+
+.radio,
+.radio > .mark {
+    border-radius: 50%;
+}
+
+.checkbox.checked > .mark,
+.radio.checked > .mark {
+    background: $checkbox-on-color;
+}
+
+.checkbox.disabled > .mark,
+.radio.disabled > .mark {
+    background: $disabled-checkbox-off-color;
+}
+
+.checkbox.checked.disabled > .mark,
+.radio.checked.disabled > .mark {
+    background: $disabled-checkbox-on-color;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.button,
+button {
+    @include no-user-select;
+    @include pointer;
+    margin: 2px;
+    padding: 5px 10px 6px 10px;
+    border: 1px solid currentColor;
+    font-size: inherit;
+    font-family: $button-font-family;
+    color: $button-font-color;
+    background: $button-background;
+    border-radius: 5px;
+    @include interact-transition;
+}
+
+input[type="button"]:hover,
+input[type="button"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="reset"]:hover,
+input[type="reset"]:focus,
+.button:hover,
+.button:focus,
+button:hover,
+button:focus {
+    border-color: $focus-button-color;
+}
+
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+.button:active,
+button:active {
+    background: $active-button-background;
+}
+
+input[type="button"].yes:hover,
+input[type="button"].yes:focus,
+input[type="submit"].yes:hover,
+input[type="submit"].yes:focus,
+input[type="reset"].yes:hover,
+input[type="reset"].yes:focus,
+.button.yes:hover,
+.button.yes:focus,
+button.yes:hover,
+button.yes:focus {
+    border-color: $yes-focus-button-color;
+}
+
+input[type="button"].yes:active,
+input[type="submit"].yes:active,
+input[type="reset"].yes:active,
+.button.yes:active,
+button.yes:active {
+    background: $yes-active-button-background;
+}
+
+input[type="button"].no:hover,
+input[type="button"].no:focus,
+input[type="submit"].no:hover,
+input[type="submit"].no:focus,
+input[type="reset"].no:hover,
+input[type="reset"].no:focus,
+.button.no:hover,
+.button.no:focus,
+button.no:hover,
+button.no:focus {
+    border-color: $no-focus-button-color;
+}
+
+input[type="button"].no:active,
+input[type="submit"].no:active,
+input[type="reset"].no:active,
+.button.no:active,
+button.no:active {
+    background: $no-active-button-background;
+}
+
+.separator {
+    @include no-user-select;
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: auto;
+    background: currentColor;
+}
+
+.indicator {
+    @include no-user-select;
+    display: inline-block;
+    position: relative;
+    bottom: .1em;
+    width: .4em;
+    height: .4em;
+    border-radius: 50%;
+    color: $on-color;
+    background: currentColor;
+
+    + span {
+        margin-left: .5em;
+    }
+}
+
+.menu-item {
+    @include pointer;
+}
+
+.icon-container {
+    display: inline-block;
+    padding: 11px;
+
+    > * {
+        fill: currentColor;
+    }
+}
+
+#sidebar {
+    @include no-user-select;
+    z-index: 5;
+    position: fixed;
+    display: flex;
+    flex-flow: column;
+    overflow: hidden;
+    white-space: nowrap;
+    width: $sidebar-width;
+    height: 100%;
+    font-size: 22px;
+    color: $sidebar-font-color;
+    background: $sidebar-background;
+    box-shadow: $sidebar-shadow-color;
+    @include apple-style-blur;
+    @include interact-transition;
+
+    > * {
+        overflow: hidden !important;
+    }
+
+    .extension {
+        display: inline-block;
+        opacity: 0;
+        @include interact-transition;
+    }
+
+    .icon-container > * {
+        width: 42px;
+    }
+
+    .menu-item {
+        background: $sidebar-menu-item-background;
+        @include interact-transition;
+    }
+
+    .menu-item:hover {
+        background: $sidebar-hover-menu-item-background;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .separator {
+        width: calc(100% - 20px);
+        height: 3px;
+        color: $sidebar-separator-color;
+    }
+
+    #sidebar-header span,
+    #sidebar-footer span {
+        vertical-align: super;
+    }
+
+    #sidebar-header {
+        z-index: 6;
+        background: $sidebar-header-background;
+        box-shadow: $sidebar-header-shadow-color;
+    }
+
+    #sidebar-services {
+        flex-grow: 1;
+        overflow: scroll;
+        padding-top: 18px;
+
+        > div {
+            display: block !important;
+            margin-bottom: 18px;
+        }
+
+        > div[disabled] {
+            .icon-container * {
+                @include filter(saturate(0%));
+            }
+
+            .subtitle,
+            .indicator {
+                color: $off-color;
+            }
+        }
+    }
+}
+
+#sidebar:hover {
+    width: $extended-sidebar-width;
+
+    .extension {
+        opacity: 1;
+    }
+}
+
+#container {
+    position: absolute;
+    left: ($sidebar-width + 10);
+    width: calc(100% - 80px);
+}
+
+#alert {
+    z-index: 10;
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    opacity: .75;
+    transform: translateX(-50%);
+    padding: 3px 10px 6px 10px;
+    font-size: 16px;
+    border-radius: 7px;
+    color: $alert-font-color;
+    background: $alert-background;
+    transition: top 500ms ease-out,
+        opacity $transition-delay;
+}
+
+#alert.shown {
+    top: 20px;
+}
+
+#alert:hover {
+    opacity: 1;
+}

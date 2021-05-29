@@ -1,0 +1,32 @@
+@mixin apple-style-blur($blur: 15px) {
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin filter($filters: none) {
+    filter: $filters;
+    -webkit-filter: $filters;
+}
+
+@mixin no-user-select {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+@mixin monospace {
+    font-family: $mono-font-family;
+}
+
+@mixin pointer {
+    cursor: pointer;
+}
+
+$transition-delay: 200ms;
+
+@mixin interact-transition($delay: $transition-delay, $properties: all) {
+    transition: $properties $delay;
+    -o-transition: $properties $delay;
+    -moz-transition: $properties $delay;
+    -webkit-transition: $properties $delay;
+}

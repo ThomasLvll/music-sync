@@ -1,0 +1,47 @@
+$font-color: darken($grey, 30%);
+$disabled-font-color: $grey;
+$background: lighten($grey, 50%);
+
+$alert-font-color: darken($grey, 50%);
+$alert-background: lighten($grey, 30%);
+$alert-error-color: hsl(0, 100%, 80%);
+$alert-success-color: lighten($primary, 40%);
+
+$link-color: $tertiary;
+$visited-link-color: $quarternary;
+$active-link-color: $secondary;
+
+$checkbox-on-color: $primary;
+$checkbox-off-color: $secondary;
+
+$disabled-checkbox-on-color: darken($primary, 20%);
+$disabled-checkbox-off-color: darken($secondary, 20%);
+
+$input-border-color: currentColor;
+$input-font-color: inherit;
+$input-background: adjust-color($grey, $lightness: -40%, $alpha: -1);
+$disabled-input-background: adjust-color($input-background, $alpha: -.95);
+$focus-input-border-color: $tertiary;
+$input-placeholder-color: lighten($grey, 10%);
+
+$button-font-color: inherit;
+$button-background: transparent;
+$focus-button-color: lighten($tertiary, 30%);
+$active-button-background: $focus-button-color;
+$yes-focus-button-color: $primary;
+$yes-active-button-background: $yes-focus-button-color;
+$no-focus-button-color: lighten($secondary, 30%);
+$no-active-button-background: $no-focus-button-color;
+$invalid-input-border-color: $secondary;
+
+$sidebar-font-color: lighten($grey, 50%);
+$sidebar-background: adjust-color($grey, $lightness: -20%, $alpha: -.66);
+$sidebar-shadow-color: $sidebar-background;
+$sidebar-header-background: adjust-color($sidebar-background, $alpha: -.23);
+$sidebar-header-shadow-color: transparent;
+$sidebar-separator-color: $sidebar-font-color;
+$sidebar-menu-item-background: adjust-color($grey, $lightness: -40%, $alpha: -1);
+$sidebar-hover-menu-item-background: adjust-color($sidebar-menu-item-background, $alpha: .15);
+
+$on-color: $primary;
+$off-color: lighten($secondary, 20%);
