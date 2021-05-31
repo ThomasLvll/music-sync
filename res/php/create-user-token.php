@@ -57,7 +57,7 @@ if ($valid) {
                     if (isset($action_params["stay_logged"]) && $action_params["stay_logged"])
                         $is_cookie_set = setcookie("user_token", $token, time() + 10 * 365.25 * 24 * 60 * 60, $httponly = true);
                     $_SESSION["user_token"] = $token;
-                    alert("Bienvenue, " . $check_row["first_name"] . " !", "var(--alert-success-color)");
+                    alert("Bienvenue, " . $check_row["first_name"] . " !", "var(--alert-success-color)", 5);
                 } else {
                     alert("La création du jeton personnel a échoué", "var(--alert-error-color)");
                 }

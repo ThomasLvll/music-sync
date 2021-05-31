@@ -39,26 +39,45 @@ function show_alert(msg, color = "#dfdfdf", timeout = 0) {
 function check_radio(element) {
     let label = document.querySelector("label[for='" + element.id + "']");
     let span = document.querySelector(".radio#" + element.id + "-radio");
-    (element.checked) ? span.classList.add("checked") : span.classList.remove("checked");
-    (element.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
-    (element.checked) ? label.classList.add("checked") : label.classList.remove("checked");
-    (element.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
+    if (element.checked) {
+        span.classList.add("checked");
+        if (label) label.classList.add("checked");
+    } else {
+        span.classList.remove("checked");
+        if (label) label.classList.remove("checked");
+    }
+    if (element.disabled) {
+        span.classList.add("disabled");
+        if (label) label.classList.add("disabled");
+    } else {
+        span.classList.remove("disabled");
+        if (label) label.classList.remove("disabled");
+    }
 }
 
 function check_checkbox(element) {
     let label = document.querySelector("label[for='" + element.id + "']");
     let span = document.querySelector(".checkbox#" + element.id + "-checkbox");
-    (element.checked) ? span.classList.add("checked") : span.classList.remove("checked");
-    (element.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
-    (element.checked) ? label.classList.add("checked") : label.classList.remove("checked");
-    (element.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
+    if (element.checked) {
+        span.classList.add("checked");
+        if (label) label.classList.add("checked");
+    } else {
+        span.classList.remove("checked");
+        if (label) label.classList.remove("checked");
+    }
+    if (element.disabled) {
+        span.classList.add("disabled");
+        if (label) label.classList.add("disabled");
+    } else {
+        span.classList.remove("disabled");
+        if (label) label.classList.remove("disabled");
+    }
 }
 
 function toggle_radio() {
-    document.querySelectorAll("input[name='" + this.name + "']:not(#" + this.id + ")").forEach(function(e) {
+    document.querySelectorAll("input[name='" + this.name + "']").forEach(function(e) {
         check_radio(e);
     });
-    check_radio(this);
 }
 
 function toggle_checkbox() {
@@ -69,21 +88,16 @@ function set_radio(id) {
     let radio = document.querySelector("#" + id);
     radio.hidden = "hidden";
     let label = document.querySelector("label[for='" + radio.id + "']");
-    if (label) {
-        label.classList.add("radio-label");
-        (radio.checked) ? label.classList.add("checked") : label.classList.remove("checked");
-        (radio.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
-    }
+    if (label) label.classList.add("radio-label");
     let span = document.createElement("span");
     span.classList.add("radio");
     span.id = radio.id + "-radio";
-    (radio.checked) ? span.classList.add("checked") : span.classList.remove("checked");
-    (radio.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
     radio.parentNode.insertBefore(span, radio);
     let mark = document.createElement("span");
     mark.id = radio.id + "-mark";
     mark.classList.add("mark");
     span.appendChild(mark);
+    check_radio(radio);
     radio.addEventListener("change", toggle_radio);
     span.addEventListener("click", function() { radio.click(); });
 }
@@ -92,27 +106,25 @@ function set_checkbox(id) {
     let checkbox = document.querySelector("#" + id);
     checkbox.hidden = "hidden";
     let label = document.querySelector("label[for='" + checkbox.id + "']");
-    if (label) {
-        label.classList.add("checkbox-label");
-        (checkbox.checked) ? label.classList.add("checked") : label.classList.remove("checked");
-        (checkbox.disabled) ? label.classList.add("disabled") : label.classList.remove("disabled");
-    }
+    if (label) label.classList.add("checkbox-label");
     let span = document.createElement("span");
     span.classList.add("checkbox");
     span.id = checkbox.id + "-checkbox";
-    (checkbox.checked) ? span.classList.add("checked") : span.classList.remove("checked");
-    (checkbox.disabled) ? span.classList.add("disabled") : span.classList.remove("disabled");
     checkbox.parentNode.insertBefore(span, checkbox);
     let mark = document.createElement("span");
     mark.id = checkbox.id + "-mark";
     mark.classList.add("mark");
     span.appendChild(mark);
+    check_checkbox(checkbox);
     checkbox.addEventListener("change", toggle_checkbox);
     span.addEventListener("click", function() { checkbox.click(); });
 }
 
 
 function init() {
+    let alert = document.querySelector("#alert");
+    alert.addEventListener("click", hide_alert);
+    alert.addEventListener("mouseover", function() { alert_timeout = clearTimeout(alert_timeout); });
     // show_alert("test");
     document.querySelectorAll("input[type='radio']").forEach(function(element) {
         set_radio(element.id);

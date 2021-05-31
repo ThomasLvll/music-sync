@@ -1,4 +1,4 @@
-<div id="alert" class="clickable" onclick="hide_alert();"></div>
+<div id="alert" class="clickable"></div>
 <div id="sidebar">
     <div id="sidebar-header">
         <div class="menu-item" onclick="open_page('home');">
